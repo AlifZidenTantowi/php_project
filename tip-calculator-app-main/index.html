@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">  
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  <title>Frontend Mentor | Tip calculator app</title>
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body style="background-color:  var(--Light-grayish-cyan);">
+  <h1 style="text-align: center; padding-top: 50px; font-size: 24px; font-weight: 700; color: hsl(183, 100%, 15%);">S P L I</h1>
+    <h1 style="text-align: center; padding-bottom: 30px; font-size: 24px; font-weight: 700; color: hsl(183, 100%, 15%);">T T E R</h1>
+  <div class="main-container">    
+    <div style="background-color: white;" class="kalkulator-card">
+    <div class="left-side" style="width: 417.703px; height: 416.306px;">
+      <label style="margin-bottom: 10px; font-weight: 700; color: hsl(186, 14%, 43%)" >Bill</label>
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping"><i class="bi bi-currency-dollar"></i></span>
+        <input id="bill" type="text" class="form-control" aria-label="Username" aria-describedby="addon-wrapping">
+      </div>
+      <label style="margin-bottom: 10px; margin-top: 25px; color: hsl(186, 14%, 43%); font-weight: 700;" >Select Tip %</label>
+      <div class="button-tip">
+        <button style="background-color: hsl(183, 100%, 15%); border: none;" onclick="btnClick(0.05, 1)" id="tip-1" class="btn btn-success">5%</button>
+        <button style="background-color: hsl(183, 100%, 15%); border: none;" onclick="btnClick(0.1, 2)" id="tip-2" class="btn btn-success">10%</button>
+        <button style="background-color: hsl(183, 100%, 15%); border: none;" onclick="btnClick(0.15, 3)" id="tip-3" class="btn btn-success">15%</button>
+        <button style="background-color: hsl(183, 100%, 15%); border: none;" onclick="btnClick(0.25, 4)" id="tip-4" class="btn btn-success">25%</button>
+        <button style="background-color: hsl(183, 100%, 15%); border: none;" onclick="btnClick(0.5, 5)" id="tip-4" class="btn btn-success">25%</button>
+        <button  style="background-color: white; color:hsl(183, 100%, 15%); border: none;" onclick="btnClick(0.05, 6)" id="tip-6" class="btn btn-success">Custom</button>
+      </div>     
+      <label style="margin-bottom: 10px; margin-top: 43px; font-weight: 700; color: hsl(186, 14%, 43%);" >Number of People</label>
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person"></i></span>
+        <input onkeyup="tipCall()" id="total" type="text" class="form-control" aria-label="Username" aria-describedby="addon-wrapping">
+      </div>
+    </div>
+    <div class="rigth-side" style="width: 417.703px; height: 416.306px; border-radius: 20px;">
+      <label style="color: white; font-weight: 700;"> Tip Amount</label>
+      <label style="color: hsl(186, 14%, 43%); font-weight: 700;"> / person</label>
+        <div class="input-group flex-nowrap">
+          <input id="tipVal" type="text" class="form-control" aria-label="Username" aria-describedby="addon-wrapping" style="width: 183px; height: 62px; margin-left: 198px; margin-top: -48px; background-color: hsl(183, 100%, 15%); border: none;">
+        </div>
+      <br>
+      <br>
+      <label style="color: white; font-weight: 700;">Total</label>
+      <label style="color: hsl(186, 14%, 43%); font-weight: 700;">/ person</label>
+      <input id="tipTotal" class="form-control" type="text" style="width: 183px; height: 62px; margin-left: 198px; margin-top: -48px; background-color: hsl(183, 100%, 15%); border: none;">
+      <br>
+      <br>
+      <button onclick="reset()" class="btn btn-success" style="margin-top: 72px; background-color: hsl(172, 67%, 45%); border: none;" >Reset</button>      
+    </div>
+    </div>
+  </div>   
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">ALIF ZIDEN TANTOWI</a>.
+  </div>
+  <script>
+    var disc = 0;
+    function btnClick(n, btn){
+      console.log(btn)
+      disc = $('#bill').val() * n;
+      $('#tip-' + btn).css('background-color', 'hsl(172, 67%, 45%)')
+    }
+
+    function tipCall(){
+      //console.log($('#bill').val())
+      //console.log($('#tip-1').val())
+      //console.log($('#total').val())
+      var tip = disc / $('#total').val();
+      var i = parseInt($('#bill').val());
+      var totalTip = i + tip;
+      $('#tipVal').css('color', 'hsl(172, 67%, 45%)')
+      $('#tipVal').css('font-size', '44px')
+      $('#tipVal').val(tip)     
+      $('#tipTotal').css('color', 'hsl(172, 67%, 45%)')
+      $('#tipTotal').css('font-size', '44px')
+      $('#tipTotal').val(totalTip)
+      console.log(i)
+    }
+
+    function reset(){
+      window.location.reload();
+    }
+
+  </script>
+</body>
+</html>
